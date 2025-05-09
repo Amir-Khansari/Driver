@@ -1,42 +1,30 @@
 @font-face {
   font-family: 'B Nazanin';
-  src: url('fonts/B-NAZANIN.TTF') format('truetype');
+  src: url('B-NAZANIN.TTF') format('truetype');
 }
 
 body {
   font-family: 'B Nazanin', sans-serif;
-  background: linear-gradient(135deg, #56c7e6, #a0dbc6);
-  background-size: cover;
+  background: linear-gradient(135deg, #4fc3f7, #a7d4af); /* آبی با رگه‌های سبز مایل به قهوه‌ای */
   margin: 0;
   padding: 0;
   direction: rtl;
+  text-align: right;
 }
 
 header {
   text-align: center;
-  padding: 30px 10px 10px;
-  font-size: 22px;
-  color: #222;
-}
-
-main {
-  padding: 20px;
+  padding: 30px 20px 10px;
+  font-size: 1.5em;
+  color: #003049;
 }
 
 .description {
-  text-align: right;
-  font-size: 18px;
+  padding: 15px 20px;
+  font-size: 1.1em;
   color: #333;
-  max-width: 90%;
-  margin: 0 auto;
-}
-
-@media (max-width: 600px) {
-  header {
-    font-size: 18px;
-  }
-
-  .description {
-    font-size: 16px;
-  }
+  max-width: 600px;
+  line-height: 1.8;
+  margin-right: auto;
+  margin-left: auto;
 }
