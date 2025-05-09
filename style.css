@@ -2,35 +2,29 @@
   font-family: 'B Nazanin';
   src: url('B-NAZANIN.TTF') format('truetype');
 }
-
 body {
   margin: 0;
-  padding: 1.5rem;
+  padding: 0;
   font-family: 'B Nazanin', sans-serif;
-  direction: rtl;
-  background: linear-gradient(135deg, #40e0d0, #8f7c5b); /* فیروزه‌ای به سبز-قهوه‌ای */
-  color: #f0f0f0;
-  min-height: 100vh;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  background-image: url('images/background.jpg'); /* مسیر عکس */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white; /* متن روشن برای زمینه تیره */
 }
 
 header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
-  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1.6rem;
 }
 
 .description {
-  background-color: rgba(255, 255, 255, 0.15);
-  padding: 1rem 1.5rem;
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  color: #ffffff;
-  max-width: 90%;
-  font-size: 1.1rem;
-  line-height: 1.9;
+  text-align: right;
+  padding: 1rem 2rem;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.2rem;
+  line-height: 2;
 }
