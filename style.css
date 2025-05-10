@@ -82,11 +82,15 @@ button {
 
 /* نظرات دیگران هم از لبه‌ها فاصله بگیره */
 #commentList li {
-  background-color: #ffffffcc;
-  color: #000;
+  background: rgba(255, 255, 255, 0.18); /* مثل textarea */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #F9F9F9;
+  text-shadow: 0 0 1px #00000066;
+
   padding: 12px;
   margin-bottom: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   border-right: 4px solid #5c8a66;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
