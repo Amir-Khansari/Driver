@@ -3,33 +3,54 @@
   src: url('B-NAZANIN.TTF') format('truetype');
 }
 
-/* فونت fallback برای کامپیوتر */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'BNazanin', Tahoma, sans-serif; /* Tahoma برای کامپیوترهایی که B Nazanin ندارند */
-  background-image: url('images/background.jpg');
+  font-family: 'BNazanin', sans-serif;
+  background-image: url('images/background.jpg'); /* مسیر عکس */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   color: white;
+  direction: rtl;
 }
 
-/* فاصله بین پاراگراف‌ها کمتر */
+/* این قسمت برای ایجاد لایه نیمه‌شفاف زیر متن */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* لایه تاریک برای خوانایی بهتر متن */
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+header h1 {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1.6rem;
+}
+
 .description {
   text-align: right;
   padding: 1rem 2rem;
   max-width: 600px;
   margin: 0 auto;
   font-size: 1.2rem;
-  line-height: 1.8; /* کمتر از قبل */
+  line-height: 2;
 }
 
-/* باکس نوشتن نظر - شیشه‌ای واضح‌تر */
+.form-section,
+#comments {
+  margin-top: 40px;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 1rem; /* فاصله از لبه‌ها */
+}
+
+/* باکس نظر - افکت شیشه‌ای */
 textarea {
   width: 100%;
   height: 100px;
-  font-family: 'BNazanin', Tahoma, sans-serif;
+  font-family: 'BNazanin', sans-serif;
   font-size: 1rem;
   padding: 10px;
   box-sizing: border-box;
@@ -37,14 +58,13 @@ textarea {
   border-radius: 10px;
   resize: none;
 
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  color: #f0f0f0; /* متن روشن‌تر و واضح‌تر */
-  text-shadow: 0 0 2px #00000099; /* کمی سایه برای خوانایی */
+  background: rgba(255, 255, 255, 0.15); /* حالت نیمه‌شفاف */
+  backdrop-filter: blur(6px); /* افکت شیشه‌ای */
+  -webkit-backdrop-filter: blur(6px);
+  color: white;
 }
 
-/* دکمه ارسال */
+/* دکمه فاصله بگیره */
 button {
   margin-top: 15px;
   background-color: #5c8a66;
@@ -59,29 +79,13 @@ button {
   margin-left: auto;
 }
 
-/* سکشن نظرات با کادر شیشه‌ای */
-#comments {
-  margin-top: 40px;
-  max-width: 600px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 15px;
-}
-
-/* نظرات داخل کادر شیشه‌ای مجزا */
+/* نظرات دیگران هم از لبه‌ها فاصله بگیره */
 #commentList li {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  color: white;
+  background-color: #ffffffcc;
+  color: #000;
   padding: 12px;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   border-right: 4px solid #5c8a66;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  list-style: none;
 }
