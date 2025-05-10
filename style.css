@@ -1,30 +1,62 @@
-@font-face {
-  font-family: 'B Nazanin';
-  src: url('B-NAZANIN.TTF') format('truetype');
-}
-body {
-  margin: 0;
-  padding: 0;
+.comment-form, .comments {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   font-family: 'B Nazanin', sans-serif;
-  background-image: url('images/background.jpg'); /* مسیر عکس */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: white; /* متن روشن برای زمینه تیره */
 }
 
-header h1 {
+.comment-form h2,
+.comments h2 {
+  margin-bottom: 15px;
+  color: #333;
   text-align: center;
-  padding: 2rem 1rem;
-  font-size: 1.6rem;
 }
 
-.description {
-  text-align: right;
-  padding: 1rem 2rem;
-  max-width: 600px;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: 1.2rem;
-  line-height: 2;
+.comment-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'B Nazanin';
+  box-sizing: border-box;
+}
+
+.comment-form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #5b7f44;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.comment-card {
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.comment-text {
+  margin: 0;
+}
+
+.comment-author {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
 }
