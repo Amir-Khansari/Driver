@@ -61,7 +61,8 @@ textarea {
   background: rgba(255, 255, 255, 0.15); /* حالت نیمه‌شفاف */
   backdrop-filter: blur(6px); /* افکت شیشه‌ای */
   -webkit-backdrop-filter: blur(6px);
-  color: white;
+  color: #f0f0f0; /* متن روشن‌تر و واضح‌تر */
+  text-shadow: 0 0 2px #00000099; /* کمی سایه برای خوانایی */
 }
 
 /* دکمه فاصله بگیره */
