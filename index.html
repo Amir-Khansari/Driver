@@ -7,14 +7,42 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>از اینکه در این مسیر شما رو همراهی می‌کنم بسیار خرسندم</h1>
-  </header>
+  <div class="overlay">
+    <header>
+      <h1>از اینکه در این مسیر شما رو همراهی می‌کنم بسیار خرسندم</h1>
+    </header>
 
-  <main>
-    <p class="description">
-      شما هم می‌توانید با بیان نظرات و انتقادات خودتون، ضمن مشارکت در این تکامل، یک یادگاری از خودتون به جا بذارید.
-    </p>
-  </main>
+    <main>
+      <p class="description">
+        شما هم می‌توانید با بیان نظرات و انتقادات خودتون ضمن مشارکت در این تکامل ، یک یادگاری از خودتون به جا بذارید.
+      </p>
+
+      <section class="form-section">
+        <form id="commentForm">
+          <textarea placeholder="نظرت رو اینجا بنویس..." required></textarea>
+          <button type="submit">ارسال نظر</button>
+        </form>
+      </section>
+
+      <section id="comments">
+        <h2>نظرات کاربران:</h2>
+        <ul id="commentList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById("commentForm");
+    const list = document.getElementById("commentList");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const input = this.querySelector("textarea");
+      const li = document.createElement("li");
+      li.textContent = input.value;
+      list.appendChild(li);
+      input.value = "";
+    });
+  </script>
 </body>
 </html>
