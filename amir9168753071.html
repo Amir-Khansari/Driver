@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مدیریت نظرات</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #121212;
+      color: white;
+      padding: 2rem;
+      direction: rtl;
+    }
+    li {
+      background: #ffffff22;
+      padding: 10px 50px 10px 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    button {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>مدیریت نظرات ثبت‌شده</h1>
+  <ul id="commentList"></ul>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    const supabaseUrl = 'https://llfkkxlioyoyybjevvme.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZmtreGxpb3lveXliamV2dm1lIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0Njg5Nzk1NSwiZXhwIjoyMDYyNDczOTU1fQ._fD2msijE1DMM5B_vFQQ8D0LBmJ0Xyb84qsLOgc-bQM'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    async function fetchComments() {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .order('id', { ascending: false })
+
+      const list = document.getElementById('commentList')
+      list.innerHTML = ''
+
+      if (error) {
+        list.innerHTML = `<li>خطا در دریافت نظرات</li>`
+        return
+      }
+
+      data.forEach(comment => {
+        const li = document.createElement('li')
+        li.textContent = comment.text
+        const del = document.createElement('button')
+        del.textContent = 'حذف'
+        del.onclick = async () => {
+          if (confirm('آیا مطمئنی که این نظر حذف بشه؟')) {
+            await supabase.from('comments').delete().eq('id', comment.id)
+            fetchComments()
+          }
+        }
+        li.appendChild(del)
+        list.appendChild(li)
+      })
+    }
+
+    fetchComments()
+  </script>
+</body>
+</html>
