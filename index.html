@@ -31,23 +31,24 @@
     </main>
   </div>
 
-  <!-- بارگذاری کتابخانه supabase -->
+  <!-- بارگذاری Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-  <!-- اتصال به Supabase -->
+  <!-- تمام کدهای جاوااسکریپت بعد از بارگذاری supabase -->
   <script>
     const supabaseUrl = 'https://llfkkxlioyoyybjevvme.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZmtreGxpb3lveXliamV2dm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4OTc5NTUsImV4cCI6MjA2MjQ3Mzk1NX0.43YYHpYsgaK2mJekn9D3ZzIBzuwHnHPIr4rwbUnnnuE';
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-  </script>
 
-  <!-- منطق ثبت و نمایش نظرات -->
-  <script>
     const form = document.getElementById("commentForm");
     const list = document.getElementById("commentList");
 
     async function fetchComments() {
-      const { data, error } = await supabase.from('comments').select('*').order('id', { ascending: false });
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .order('id', { ascending: false });
+
       if (error) {
         console.error("خطا در دریافت نظرات:", error);
         return;
@@ -67,7 +68,10 @@
       const text = input.value.trim();
       if (!text) return;
 
-      const { error } = await supabase.from('comments').insert([{ text }]);
+      const { error } = await supabase
+        .from('comments')
+        .insert([{ text }]);
+
       if (error) {
         alert("خطا در ثبت نظر");
         console.error(error);
@@ -75,10 +79,10 @@
       }
 
       input.value = "";
-      fetchComments(); // Refresh list
+      fetchComments(); // نظرات را دوباره بارگذاری کن
     });
 
-    // اولین بار نظرات را بگیریم
+    // در شروع، نظرات را بگیر
     fetchComments();
   </script>
 </body>
