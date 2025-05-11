@@ -32,58 +32,55 @@
   </div>
 
   <!-- بارگذاری Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const supabaseUrl = 'https://llfkkxlioyoyybjevvme.supabase.co';
+  const supabaseKey = 'eyJhbGciOi...'; // همونی که دادی
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-  <!-- تمام کدهای جاوااسکریپت بعد از بارگذاری supabase -->
-  <script>
-    const supabaseUrl = 'https://llfkkxlioyoyybjevvme.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZmtreGxpb3lveXliamV2dm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4OTc5NTUsImV4cCI6MjA2MjQ3Mzk1NX0.43YYHpYsgaK2mJekn9D3ZzIBzuwHnHPIr4rwbUnnnuE';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  const form = document.getElementById("commentForm");
+  const list = document.getElementById("commentList");
 
-    const form = document.getElementById("commentForm");
-    const list = document.getElementById("commentList");
+  async function fetchComments() {
+    const { data, error } = await supabaseClient
+      .from('comments')
+      .select('*')
+      .order('id', { ascending: false });
 
-    async function fetchComments() {
-      const { data, error } = await supabase
-        .from('comments')
-        .select('*')
-        .order('id', { ascending: false });
-
-      if (error) {
-        console.error("خطا در دریافت نظرات:", error);
-        return;
-      }
-
-      list.innerHTML = "";
-      data.forEach(comment => {
-        const li = document.createElement("li");
-        li.textContent = comment.text;
-        list.appendChild(li);
-      });
+    if (error) {
+      console.error("خطا در دریافت نظرات:", error);
+      return;
     }
 
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const input = this.querySelector("textarea");
-      const text = input.value.trim();
-      if (!text) return;
-
-      const { error } = await supabase
-        .from('comments')
-        .insert([{ text }]);
-
-      if (error) {
-        alert("خطا در ثبت نظر");
-        console.error(error);
-        return;
-      }
-
-      input.value = "";
-      fetchComments(); // نظرات را دوباره بارگذاری کن
+    list.innerHTML = "";
+    data.forEach(comment => {
+      const li = document.createElement("li");
+      li.textContent = comment.text;
+      list.appendChild(li);
     });
+  }
 
-    // در شروع، نظرات را بگیر
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const input = this.querySelector("textarea");
+    const text = input.value.trim();
+    if (!text) return;
+
+    const { error } = await supabaseClient
+      .from('comments')
+      .insert([{ text }]);
+
+    if (error) {
+      alert("خطا در ثبت نظر");
+      console.error(error);
+      return;
+    }
+
+    input.value = "";
     fetchComments();
-  </script>
+  });
+
+  fetchComments();
+</script>
 </body>
 </html>
